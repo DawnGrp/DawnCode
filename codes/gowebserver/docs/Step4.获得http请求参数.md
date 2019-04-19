@@ -52,33 +52,32 @@ key: description , value: hello
 
 http请求的所有内容，都保存在http.Request对象中，也就是myWeb获得的参数 r 。
 
-首先，调用`r.ParseForm()`，他的作用是将 r.Form and r.PostForm 对象填充数据，如果不调用这个函数，我们将无法通过r.Form和r.PostForm获得数据。
+首先，调用`r.ParseForm()`，他的作用填充数据到 r.Form 和 r.PostForm
 
-接下来，分别循环获取 r.URL.Query() 函数返回的对象 和 r.PostForm 对象里的数据。
+接下来，分别循环获取遍历打印出 r.URL.Query() 函数返回的对象 和 r.PostForm 对象里的每一个参数。
 
-r.URL.Query() 函数将返回本次请求中的URL参数的对象
+`r.URL.Query()` 和 `r.PostForm` 分别保存的是URL参数对象和表单参数对象
+，它们都是键值对对象，键的类型是字符串string，值的类型是string数组。
 
-r.PostForm 对象保存的是Form表单提交的数据的对象
+在http协议中，相同名称的参数会组成数组。
 
-r.URL.Query() 和 r.PostForm 字典都是url.Vaules对象，它是一个键值对对象，键的类型是string，值的类型是string数组，因为同名参数是被组合成数组的。
-
-**for循环**
+**循环遍历打印出参数 for...range**
 
 Go语言的循环只有for，以下是Go中4种for循环
 
 ```go
 
-//无限循环
+//无限循环，阻塞线程，用不停息，慎用！
 for{
 
 }
 
-//条件循环
+//条件循环，如果a<b，循环，否则，退出循环
 for a<b{
 
 }
 
-//初始化数据的条件循环
+//初始化数据的条件循环，设i为0，i小于10时循环，每次轮循环后i=i+1
 for i:=0;i<10;i++{
 
 }
@@ -92,7 +91,6 @@ for k,v:=range objs{
 
 本例种用到的是 for...range循环，遍历可遍历对象，并且将键和值赋值给变量 k和v
 
-所以，这段代码的意思就是：从参数r中分别拿到URL参数对象和form表单对象，然后用两个for循环，分别打印出来。
 
 但是，我们页面还是只是输出一句“我是一个开始”。
 
