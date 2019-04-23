@@ -14,7 +14,7 @@ import (
 )
 
 func myWeb(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "我是一个开始")
+    fmt.Fprintf(w, "这是一个开始")
 }
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 
 `$ go run main.go`
 
-这时候，你会看到用 `fmt.Println`打印出来的提示，在浏览器中访问 `http://localhost:8080`你将访问到一个页面，显示 "**我是一个开始**"
+这时候，你会看到用 `fmt.Println`打印出来的提示，在浏览器中访问 `http://localhost:8080`你将访问到一个页面，显示 "**这是一个开始**"
 
 ## 解读
 
@@ -133,10 +133,10 @@ HandleFunc绑定函数有一个要求，该函数必须定义两个参数，类�
 myWeb函数体内，只有一句代码 
 
 ```go
-fmt.Fprintf(w, "我是一个开始")
+fmt.Fprintf(w, "这是一个开始")
 ```
 
-再一次遇到老熟人`fmt`，这次使用他的`Fprintf`函数将“我是一个开始”,写入到`w`响应流写入器对象。
+再一次遇到老熟人`fmt`，这次使用他的`Fprintf`函数将“这是一个开始”,写入到`w`响应流写入器对象。
 
 ### 总结一下，从编码到运行，你和它都干了些什么：
 

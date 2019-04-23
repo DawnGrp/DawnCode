@@ -26,19 +26,19 @@ func myWeb(w http.ResponseWriter, r *http.Request) {
 
     data := map[string]string{
         "name":    "zeta",
-        "someStr": "我是一个开始",
+        "someStr": "这是一个开始",
     }
 
     t.Execute(w, data)
 
-    // fmt.Fprintln(w, "我是一个开始")
+    // fmt.Fprintln(w, "这是一个开始")
 }
 
 ```
 
 在命令行中运行 `$ go run main.go` ，访问 `http://localhost:8080`
 
-看，`<div id='templateTextDiv'>Hi,{{.name}},{{.someStr}}</div>` 中的{{.name}}和{{.someStr}}被替换成了 `zeta`和`我是一个开始`。并且，不再使用fmt.Fprintln函数输出数据到Response了
+看，`<div id='templateTextDiv'>Hi,{{.name}},{{.someStr}}</div>` 中的{{.name}}和{{.someStr}}被替换成了 `zeta`和`这是一个开始`。并且，不再使用fmt.Fprintln函数输出数据到Response了
 
 但是...这还是在代码里硬编码HTML字符串啊...
 
@@ -71,12 +71,12 @@ func myWeb(w http.ResponseWriter, r *http.Request) {
 
     data := map[string]string{
         "name":    "zeta",
-        "someStr": "我是一个开始",
+        "someStr": "这是一个开始",
     }
 
     t.Execute(w, data)
 
-    // fmt.Fprintln(w, "我是一个开始")
+    // fmt.Fprintln(w, "这是一个开始")
 }
 
 ```

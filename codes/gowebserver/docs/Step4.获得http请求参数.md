@@ -18,7 +18,7 @@ func myWeb(w http.ResponseWriter, r *http.Request) {
         fmt.Println("key:", k, ", value:", v[0])
     }
 
-    fmt.Fprintln(w, "我是一个开始")
+    fmt.Fprintln(w, "这是一个开始")
 }
 
 ```
@@ -93,7 +93,7 @@ for k,v := range objs{
 
 本例种用到的是 for...range循环，遍历可遍历对象，并且将键和值赋值给变量 k和v
 
-但是，我们页面还是只是输出一句“**我是一个开始**”。我们需要一个可以见人的页面，这样可以不行
+但是，我们页面还是只是输出一句“**这是一个开始**”。我们需要一个可以见人的页面，这样可以不行
 
 你也许也想到了，是不是可以在输出时，硬编码HTML字符串？当然可以，但是Go提供了更好的方式，HTML模版。
 

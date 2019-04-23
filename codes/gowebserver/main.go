@@ -17,12 +17,12 @@ func myWeb(w http.ResponseWriter, r *http.Request) {
 	data = map[string]string{
 		//"name":    r.URL.Query()["name"][0],
 		"name":    "zeta",
-		"someStr": "我是一个开始",
+		"someStr": "这是一个开始",
 	}
 
 	t.Execute(w, data)
 
-	// fmt.Fprintln(w, "我是一个开始")
+	// fmt.Fprintln(w, "这是一个开始")
 }
 
 func main() {
