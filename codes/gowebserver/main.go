@@ -27,6 +27,14 @@ func myWeb(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+	mystring := "hi"
+	//取指针
+	mypointer := &mystring
+	//取值
+	mystring2 := *mypointer
+
+	fmt.Println(mystring, mypointer, mystring2)
+
 	http.HandleFunc("/", myWeb)
 
 	staticHandle := http.FileServer(http.Dir("./static"))
