@@ -88,3 +88,43 @@ http包下，还提供了一个函数 `http.StripPrefix` 剥开前缀，如下�
 `http.Handle("/upload/", http.StripPrefix("/upload/", http.FileServer(http.Dir("./upload"))))` 对应到 ./upload
 
 
+到这里，一个从流程上完整的Web服务程序就介绍完了。
+
+整理一下，一个Go语言的Web程序基本的流程：
+
+1. 定义请求处理函数
+2. 用http包的HandleFunc匹配处理函数和路由
+3. ListenAndServe开启监听
+
+当有http请求时：
+
+1. http请求到监听的的端口
+2. 根据路由将请求对象和响应写入器传递给匹配的处理函数
+3. 处理函数经过一番操作后，将数据写入到响应写入器
+4. 响应给请求的浏览器
+
+## 最后编译程序
+
+之前调试都使用的是 `go run` 命令运行程序。
+
+您会发现，每次运行`go run`都会重新编译源码，如何将程序运行在没有Go环境的计算机上？
+
+使用 `go build` 命令，它会编译源码，生成可执行的二进制文件。
+
+最简单的 `go build` 命令什么参数都不用加，它会自动查找目录下的main包下的main()函数，然后依次查找依赖包编译成一个可执行文件。
+
+其他依赖文件的相对路径需要和编译成功后的可执行文件一致，例如范例中的templates文件夹和static文件夹。
+
+默认情况下，`go build`会编译为和开发操作系统对应的可执行文件，如果要编译其他操作系统的可执行文件，需要用到交叉编译。
+
+例如将Linux和MacOSX系统编译到windows
+
+`GOOS=windows GOARCH=amd64 go build`
+
+在Windows上需要使用SET命令, 例如在Windows上编译到Linux系统
+```shell
+SET GOOS=linux
+SET GOARCH=amd64
+go build main.go
+```
+
