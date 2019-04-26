@@ -1,13 +1,10 @@
 package main
 
-import "fmt"
-
 func main() {
-	list := []int{1, 2, 3}
+	var p *int
+	i := 9
 
-	println("list的地址: ", &list)
+	p = &i
 
-	for i := range list {
-		fmt.Printf("第%d项的地址：%x \n", i, &list[i])
-	}
+	print(p)
 }

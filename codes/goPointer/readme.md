@@ -1,4 +1,4 @@
-# Golang研讨：了解的Golang指针
+# Golang研学：了解的Golang指针
 
 在大部分面向对象语言如C++、C#、Java，在函数传参数时除了基础值类型，对象是通过引用方式传递的。
 
@@ -39,6 +39,12 @@ fmt.Println(*mystrPointer)
 `go run` 运行后，可以看到打印出 `mystr`的值“Hello！”
 
 **符号`*`也用做定义指针类型的关键字。**
+
+例如：
+
+```go
+var p *int
+```
 
 ## 应用场景
 
@@ -120,6 +126,11 @@ type myStruct struct {
 	Name string
 }
 
+//定义这个结构体的改名方法
+func (m myStruct) ChangeName(newName string) {
+	m.Name = newName
+}
+
 func main() {
 	//创建这个结构体变量
 	mystruct := myStruct{
@@ -131,11 +142,6 @@ func main() {
 
 	//没改成功
 	fmt.Println(mystruct.Name)
-}
-
-//定义这个结构体的改名方法
-func (m myStruct) ChangeName(newName string) {
-	m.Name = newName
 }
 ```
 
@@ -174,17 +180,6 @@ type myStruct struct {
 	Name string
 }
 
-func main() {
-	//创建这个结构体变量
-	mystruct := myStruct{
-		Name: "zeta",
-	}
-
-	SetName(mystruct, "Chow")
-
-	mystruct.SayMyName()
-}
-
 //定义这个结构体的改名方法
 func (m *myStruct) ChangeName(newName string) {
 	m.Name = newName
@@ -197,6 +192,17 @@ func (m myStruct) SayMyName() {
 //一个使用接口作为参数的函数
 func SetName(s myInterface, name string) {
 	s.ChangeName(name)
+}
+
+func main() {
+	//创建这个结构体变量
+	mystruct := myStruct{
+		Name: "zeta",
+	}
+
+	SetName(mystruct, "Chow")
+
+	mystruct.SayMyName()
 }
 ```
 
@@ -225,21 +231,7 @@ cannot use mystruct (type myStruct) as type myInterface in argument to SetName:
 
  所以，&mystruct 直接实现了接口定义的ChangeName和SayMyName两个方法，而mystruct只能实现了SayMyName，mystruct调用ChangeName方法其实转换成指针类型后调用的，不算实现了接口。
 
-### Slice和数组的指针
-
-现看Slice类型
-
-```go
-func main() {
-	list := []int{1, 2, 3}
-
-	println(&list)
-
-	for i := range list {
-		fmt.Printf("第%d项的地址：%x \n", i, &list[i])
-	}
-}
-```
+----
 
 到此Go语言指针类型的应用介绍差不多了。
 
