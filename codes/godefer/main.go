@@ -4,40 +4,84 @@ import "fmt"
 
 func main() {
 
-	var s string
+	i := foo1()
+	fmt.Println("foo1 return :", *i)
 
-	println(*foo(&s))
-
-	println(bar(s))
-
-	a()
-
-	i := c2()
-	println(i)
 }
 
-func foo(i *string) *string {
-
+func panicfunc() {
 	defer func() {
-		*i = "defer result in foo1"
-		println(*i)
-	}()
-	defer func() {
-		*i = "defer result in foo2"
-		println(*i)
-	}()
-	defer func() {
-		*i = "defer result in foo3"
-		println(*i)
+		fmt.Println("before recover")
+		recover()
+		fmt.Println("after recover")
 	}()
 
-	*i = "function result in foo"
-	println(*i)
+	fmt.Println("before panic")
+	panic(0)
+	fmt.Println("after panic")
+}
+
+func foo1() *int {
+
+	i := new(int)
+	*i = 0
+
+	defer func() {
+		*i = 1
+	}()
+
 	return i
 }
 
-func bar(i string) string {
+func foo3() int {
 
+	//i = new(int)
+	i := 0
+
+	defer func() {
+		i = 1
+	}()
+
+	return i
+}
+
+func foo2() map[string]string {
+
+	m := map[string]string{}
+
+	defer func() {
+		m["a"] = "b"
+	}()
+
+	return m
+}
+
+func foo() {
+	i := 0
+	defer func(k *int) {
+		fmt.Println("第一个defer", *k)
+	}(&i)
+
+	i++
+	fmt.Println("+1后的i：", i)
+
+	defer func(k *int) {
+		fmt.Println("第二个defer", *k)
+	}(&i)
+
+	i++
+	fmt.Println("再+1后的i：", i)
+
+	defer func(k *int) {
+		fmt.Println("第三个defer", *k)
+	}(&i)
+
+	i++
+	fmt.Println("再+1后的i：", i)
+}
+
+func bar() string {
+	var i = ""
 	defer func() {
 		i = "defer result in bar"
 	}()
