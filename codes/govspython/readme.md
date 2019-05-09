@@ -15,15 +15,71 @@ Python就更不用说了，TIOBE排行榜的前十常驻居民，现在已经稳
 
 ## 编码
 
+**Python**
+
+Python中默认的编码格式是 ASCII 格式，程序文件中如果包含中文字符需要在文件开头加上 `# -*- coding: UTF-8 -*-` 或者 `#coding=utf-8` 就行了
+
+**Golang**
+
+原生支持Unicode
+
 ## 保留字（关键字）
+
+**Python**
+
+30个关键字
+
+```
+and	exec	not
+assert	finally	or
+break	for	pass
+class	from	print
+continue global	raise
+def	if	return
+del	import	try
+elif	in	while
+else	is	with
+except	lambda	yield
+```
+
+**Golang**
+
+25个关键字
+
+```
+break	default	func	interface	select
+case	defer	go	map	struct
+chan	else	goto	package	switch
+const	fallthrough	if	range	type
+continue	for	import	return	var
+```
 
 ## 注释
 
+**Python**
+
+**Golang**
+
 ## 行与缩进
+
+**Python**
+
+**Golang**
+
 
 ## 多行语句
 
+**Python**
+
+**Golang**
+
+
 ## 同一行显示多条语句
+
+**Python**
+
+**Golang**
+
 
 ## 导入包
 
