@@ -23,13 +23,12 @@ func main() {
 	work := func() {
 
 		gobot.Every(10*time.Second, func() {
-			// for _, led := range leds {
-			// 	log.Println("led NAME/PIN/TOGGLE:", led.Name(), led.Pin(), led.Toggle())
-			// }
-
-			leds[18-1].Toggle()
-			log.Println("led NAME/PIN/TOGGLE:",
-				leds[18-1].Name(), leds[18-1].Pin(), leds[18-1].State())
+			for _, led := range leds {
+				log.Println("led :", led.Name(), led.Pin(), led.State())
+				if err := led.Toggle(); err != nil {
+					log.Println(led.State())
+				}
+			}
 		})
 	}
 
