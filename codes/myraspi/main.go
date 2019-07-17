@@ -44,7 +44,7 @@ func main() {
 					if toggle == true {
 						long = time.Now().UnixNano() - recTime
 						toggle = false
-						fmt.Println("end record:", long, (long*340000)/1000000000, "mm")
+						fmt.Println("end record:", long, (long*340000)/20000000000, "cm")
 						break
 					}
 
